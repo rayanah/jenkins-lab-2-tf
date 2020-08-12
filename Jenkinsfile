@@ -16,8 +16,7 @@ pipeline {
   }
   stages {
       stage("init") {
-          steps {
-             '
+        steps {
               sh 'make init'
               sh 'terraform force-unlock -force 6d594d97-18d0-1ea4-e58d-c04ac16d0510'
               sh 'yes
