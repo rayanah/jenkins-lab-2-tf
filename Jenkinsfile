@@ -19,7 +19,7 @@ pipeline {
           steps {
               sh 'make init'
               sh 'chmod -R a+rwx .terraform ssh'
-              sh 'time terraform plan -out plan.out '
+              sh 'time terraform plan -out plan.out -lock=false '
            }
       }
       stage("plan") {
