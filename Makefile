@@ -27,10 +27,10 @@ fmt:
 	time terraform fmt -recursive
 
 plan:
-	time terraform plan -out plan.out -var-file=terraform.tfvars 
+	time terraform plan -out plan.out -var-file=terraform.tfvars -lock=false
 
 apply:
-	time terraform apply plan.out 
+	time terraform apply plan.out -lock=false
 
 down:
 	time terraform destroy -auto-approve 
