@@ -178,7 +178,7 @@ resource "aws_instance" "webserver" {
   depends_on                  = [aws_instance.api]
   
    provisioner "local-exec" {
-    command = "echo ${aws_instance.webserver.public_ip} > ip_address.txt"
+    command = "echo ${aws_instance.api.0.public_ip} > ip_address.txt"
   }
 }
 
