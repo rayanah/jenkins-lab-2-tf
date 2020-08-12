@@ -94,7 +94,11 @@ resource "aws_subnet" "webserver" {
   map_public_ip_on_launch = false
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   tags                    = module.tags_webserver.tags
-}
+  
+    provisioner "local-exec" {
+    command = "echo ${aws_instance.webserver.public_ip} > ip_address.txt"
+  }
+  }
 
 resource "aws_security_group" "bastion" {
   vpc_id = aws_vpc.lab.id
