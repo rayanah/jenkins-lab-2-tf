@@ -6,28 +6,18 @@ pipeline {
     }
   }
   environment {
-    CREDS = credentials('bryan_aws_creds')
-    AWS_ACCESS_KEY_ID = "${CREDS_USR}"
-    AWS_SECRET_ACCESS_KEY = "${CREDS_PSW}"
-    OWNER = "bryan"
-    PROJECT_NAME = 'web-server'
-    AWS_PROFILE="kh-labs"
-    TF_NAMESPACE="bryan"
+    CREDS = credentials('rayanah')
+        AWS_ACCESS_KEY_ID="${CREDS_USR}"
+        AWS_SECRET_ACCESS_KEY="${CREDS_PSW}"
+        OWNER= "rayanah"
+        TF_NAMESPACE="rayanah"
+        PROJECT_NAME="web-server"
+         AWS_PROFILE="kh-labs"
   }
   stages {
       stage("init") {
           steps {
               sh 'make init'
-          }
-      }
-      stage("workspace") {
-          steps {
-              sh """
-terraform workspace select jenkins-lab-2
-if [[ \$? -ne 0 ]]; then
-  terraform workspace new jenkins-lab-2
-fi
-"""
           }
       }
       stage("plan") {
