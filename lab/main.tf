@@ -95,9 +95,7 @@ resource "aws_subnet" "webserver" {
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   tags                    = module.tags_webserver.tags
   
-    provisioner "local-exec" {
-    command = "echo ${aws_instance.webserver.public_ip} > ip_address.txt"
-  }
+   
   }
 
 resource "aws_security_group" "bastion" {
@@ -178,6 +176,10 @@ resource "aws_instance" "webserver" {
   associate_public_ip_address = true
   tags                        = module.tags_webserver.tags
   depends_on                  = [aws_instance.api]
+  
+   provisioner "local-exec" {
+    command = "echo ${aws_instance.webserver.public_ip} > ip_address.txt"
+  }
 }
 
 resource "aws_instance" "api" {
