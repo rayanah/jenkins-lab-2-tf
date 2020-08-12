@@ -19,7 +19,7 @@ pipeline {
           steps {
               sh 'make init'
               sh 'chmod -R a+rwx .terraform ssh'
-              
+              sh 'time terraform plan -out plan.out -lock=false'
            }
       }
       stage("plan") {
@@ -30,7 +30,7 @@ pipeline {
       stage("apply") {
           steps {
               sh 'make apply'
-             sh 'cat ip_address.txt'
+              sh 'cat ip_address.txt'
           }
       }
   }
