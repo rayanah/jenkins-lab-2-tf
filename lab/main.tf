@@ -130,12 +130,7 @@ resource "aws_security_group" "webserver" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
-    security_groups = [aws_security_group.bastion.id]
-  }
+ 
 
   ingress {
     from_port   = 80
@@ -144,7 +139,14 @@ resource "aws_security_group" "webserver" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
+resource "aws_security_group_rule" "cycle" {
+  type              = "ingress"
+  from_port         = 22
+  to_port           = 22
+  protocol          = "tcp"
+  cidr_blocks       = [aws_vpc.lab.cidr_block]
+  security_group_id = [aws_security_group.webserver.id]
+}
 resource "random_id" "keypair" {
   keepers = {
     public_key = file(var.public_key_path)
