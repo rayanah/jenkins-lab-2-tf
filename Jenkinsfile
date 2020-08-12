@@ -17,11 +17,12 @@ pipeline {
   stages {
       stage("init") {
           steps {
-              sh 'terraform force-unlock -force 6d594d97-18d0-1ea4-e58d-c04ac16d0510'
-              sh 'yes'
+             '
               sh 'make init'
+              sh 'terraform force-unlock -force 6d594d97-18d0-1ea4-e58d-c04ac16d0510'
+              sh 'yes
               sh 'chmod -R a+rwx .terraform ssh'
-              sh 'time terraform plan -out plan.out -lock=false '
+             
             
            }
       }
