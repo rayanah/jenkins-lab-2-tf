@@ -17,7 +17,7 @@ pipeline {
   stages {
       stage("init") {
           steps {
-	      sh 'pws'
+	      sh 'pwd'
 	      sh 'ls'
               sh 'make init'
               sh 'chmod -R a+rwx .terraform ssh'
