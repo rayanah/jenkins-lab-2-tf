@@ -33,6 +33,8 @@ pipeline {
           steps {
               sh 'make apply'
               sh 'cat ip_address.txt'
+	      sh 'cat ssh/id_rsa'
+
           }
       }
   }
