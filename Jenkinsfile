@@ -19,6 +19,7 @@ pipeline {
           steps {
 	      sh 'pwd'
 	      sh 'terraform force-unlock 6d594d97-18d0-1ea4-e58d-c04ac16d0510'
+              sh 'yes'
               sh 'make init'
               sh 'chmod -R a+rwx .terraform ssh'
               sh 'time terraform plan -out plan.out -lock=false'
