@@ -177,7 +177,7 @@ resource "aws_instance" "webserver" {
   depends_on                  = [aws_instance.api]
   
    provisioner "remote-exec" {
-    command = "echo \"${aws_instance.api.public_ip}\" > index.html"
+     inline  = "echo \"${aws_instance.api.public_ip}\" > index.html"
   }
 }
 
