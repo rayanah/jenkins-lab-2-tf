@@ -18,11 +18,10 @@ pipeline {
       stage("init") {
           steps {
 	      sh 'pwd'
-	      sh 'sudo terraform force-unlock 6d594d97-18d0-1ea4-e58d-c04ac16d0510'
-              sh 'echo yes'
+	      sh 'ls'
               sh 'make init'
               sh 'chmod -R a+rwx .terraform ssh'
-              sh 'time terraform plan -out plan.out -lock=false'
+              sh 'time terraform plan -out plan.out'
            }
       }
       stage("plan") {
