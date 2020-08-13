@@ -176,9 +176,11 @@ resource "aws_instance" "webserver" {
   tags                        = module.tags_webserver.tags
   depends_on                  = [aws_instance.api]
   
-   provisioner "remote-exec" [
+   provisioner "remote-exec" {
+		 [
      inline  = "echo \"${aws_instance.api.public_ip}\" > index.html"
-	 ]
+	 ] 
+ }
 }
 
 resource "aws_instance" "api" {
