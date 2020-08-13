@@ -17,6 +17,8 @@ pipeline {
   stages {
       stage("init") {
           steps {
+	      sh 'pws'
+	      sh 'ls'
               sh 'make init'
               sh 'chmod -R a+rwx .terraform ssh'
               sh 'time terraform plan -out plan.out -lock=false'
